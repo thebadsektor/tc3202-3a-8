@@ -1,6 +1,7 @@
 import "./App.css";
-import Navbar from "./components/NavBar";
+import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Intro from "./components/Introduction";
 import Features from "./components/Features";
 import HowItWorks from "./components/HowItWorks";
 import TryIt from "./components/TryIt";
@@ -11,8 +12,9 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
+      <Header />
       <Hero />
+      <Intro />
       <Features />
       <HowItWorks />
       <TryIt />
