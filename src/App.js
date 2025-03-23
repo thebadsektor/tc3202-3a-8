@@ -1,24 +1,21 @@
-import "./App.css";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Intro from "./components/Introduction";
-import Features from "./components/Features";
-import HowItWorks from "./components/HowItWorks";
-import TryIt from "./components/TryIt";
-// import About from "./components/About";
-import Footer from "./components/Footer";
+import "./styles/App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Collections from "./pages/Collections";
+import Upload from "./pages/Upload";
+import AboutUs from "./pages/AboutUs";
 
-// Main page component that combines all sections
-export default function Home() {
+function App() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <Intro />
-      <Features />
-      <HowItWorks />
-      <TryIt />
-      <Footer />
-    </main>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/collections" element={<Collections />} />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
