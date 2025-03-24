@@ -28,12 +28,12 @@ export default function Features() {
     return (
 
         <section id="features" className="py-20">
-            <div className="container mx-full px-4 md:px-6">
+            <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-5xl text-softBlack font-narrAIte font-semibold mb-4">Features</h2>
-                    <p className="text-sm text-softBlack max-w-xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl text-softBlack font-narrAIte font-semibold mb-4">Features</h2>
+                    <h5 className="text-sm font-narrAIte text-softBlack max-w-2xl mx-auto">
                     Explore how narrAlte transforms visual content into an immersive, joyful experience for blind children, making stories and illustrations come to life through sound.
-                    </p>
+                    </h5>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">

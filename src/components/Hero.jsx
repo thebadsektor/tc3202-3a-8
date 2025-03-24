@@ -1,16 +1,19 @@
-export default function Hero() {
+import Mockup from "../assets/HeroMockup.svg";
 
+export default function Hero() {
     return (
-        <div className="Hero bg-gradient-to-br from-one to-six h-full w-full flex justify-center items-center">
-            <div className="Title px-20 py-40 flex flex-col justify-center items-center gap-6">
-                <h1 className="narrAite text-5xl text-softBlack font-narrAIte font-semibold text-center">
+        <div className="Hero bg-gradient-to-br from-one to-six h-full w-full flex flex-col md:flex-row justify-between items-center px-60 py-20">
+            {/* Left Section: Texts & Buttons */}
+            <div className="Title flex flex-col justify-center items-start md:pl-10 gap-6 max-w-lg">
+                <h1 className="narrAite text-4xl md:text-5xl text-softBlack font-narrAIte font-semibold leading-tight">
                     Empowering <span className="text-eight">Vision</span> Through Voice
                 </h1>
-                <h5 className="shortdes text-softBlack text-sm font-narrAIte text-center max-w-4xl leading-relaxed">
-                Transform your visuals into vivid stories with seamless image-to-speech technology.
-                Unlock the power of your images — whether you're exploring ideas, creating content, or capturing memorable moments, narrAIte brings your pictures to life through spoken words.
+                <h5 className="shortdes text-justify text-softBlack text-sm md:text-base font-narrAIte leading-relaxed">
+                    Transform your visuals into vivid stories with seamless image-to-speech technology.
+                    Unlock the power of your images — whether you're exploring ideas, creating content, or capturing memorable moments, narrAIte brings your pictures to life through spoken words.
                 </h5>
-                <div className="buttons px-4 py-4 flex flex-row justify-center items-center gap-6">
+
+                <div className="buttons flex flex-row justify-start items-center gap-4">
                     <button
                         type="button"
                         className="flex justify-center gap-2 items-center shadow-xl text-lg font-narrAIte bg-one backdrop-blur-md text-softBlack font-semibold border-gray-50 
@@ -36,6 +39,10 @@ export default function Hero() {
                         <a href="/about" className="hover:text-one">Learn More</a>
                     </button>
                 </div>
+            </div>
+
+            <div className="Images flex justify-center items-center pl-40">
+                <img src={Mockup} alt="Hero Mockup" className="hidden md:block w-80 md:w-[600px] object-contain" />
             </div>
         </div>
     );

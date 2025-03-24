@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar.jsx";
 import Hero from "../components/Hero.jsx";
 import Features from "../components/Features.jsx";
 import HowItWorks from "../components/HowItWorks.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function Home() {
     return (
@@ -11,6 +12,7 @@ export default function Home() {
             <Hero />
             <Features />
             <HowItWorks />
+            <Footer />
         </>
     )
 }

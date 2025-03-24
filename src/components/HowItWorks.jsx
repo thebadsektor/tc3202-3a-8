@@ -1,3 +1,5 @@
+import {Upload, Cpu, MessageSquare, Volume2} from "lucide-react";
+
 export default function HowItWorks() {
 
     return (
