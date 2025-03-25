@@ -1,44 +1,34 @@
-import React, { useState } from "react";
-
-const books = [
-  { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", audio: "gatsby.mp3", cover: "gatsby.jpg" },
-  { id: 2, title: "1984", author: "George Orwell", audio: "1984.mp3", cover: "1984.jpg" },
-  { id: 3, title: "To Kill a Mockingbird", author: "Harper Lee", audio: "mockingbird.mp3", cover: "mockingbird.jpg" }
-];
-
-const BookCard = ({ book, onPlay }) => (
-  <div className="p-4 m-2 bg-white shadow-lg rounded-2xl w-64 hover:scale-105 transition-transform">
-    <div className="flex flex-col items-center">
-      <img src={book.cover} alt={book.title} className="w-40 h-56 object-cover rounded-lg mb-4 shadow-md" />
-      <h2 className="text-xl font-semibold text-center">{book.title}</h2>
-      <p className="text-gray-600 text-sm mb-2">by {book.author}</p>
-      <button onClick={() => onPlay(book.audio)} className="mt-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 px-4 py-2 rounded-full shadow-md">
-        🎧 Listen
-      </button>
+export default function Books() {
+  return(
+    <div className="Collection bg-gradient-to-br from-one to-six w-screen h-full px-40 py-10">
+      <div className="Title text-4xl md:text-5xl font-narrAIte font-bold text-softBlack mb-10">Collections.</div>
+      <div className="cursor-pointer transition-all duration-500 hover:translate-y-2 w-72 h-40 bg-neutral-50 rounded-3xl shadow-xl flex flex-row items-center justify-evenly gap-4 px-4"
+  >
+    <svg
+      class="stroke-softBlack shrink-0 rounded-full"
+      height="50"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 100 100"
+      width="50"
+      x="0"
+      xmlns="http://www.w3.org/2000/svg"
+      y="0"
+    >
+      <path
+        d="M17.9,60.7A14.3,14.3,0,0,0,32.2,75H64.3a17.9,17.9,0,0,0,0-35.7h-.4a17.8,17.8,0,0,0-35.3,3.6,17.2,17.2,0,0,0,.4,3.9A14.3,14.3,0,0,0,17.9,60.7Z"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="8"
+      ></path>
+    </svg>
+    <div>
+      <span class="text-xl font-bold text-eight">"Book Title"</span>
+      <p class="line-clamp-3 font-narrAIte text-sm">
+        "Short Description"
+      </p>
     </div>
   </div>
-);
-
-const BookCollection = () => {
-  const [currentAudio, setCurrentAudio] = useState(null);
-
-  const handlePlay = (audioSrc) => {
-    if (currentAudio) currentAudio.pause();
-    const audio = new Audio(audioSrc);
-    setCurrentAudio(audio);
-    audio.play();
-  };
-
-  return (
-    <div className="p-8 bg-gradient-to-br from-three to-six min-h-screen">
-      <h1 className="text-4xl font-bold text-center mb-6 text-blue-700 drop-shadow">My Book Collection</h1>
-      <div className="flex flex-wrap justify-center gap-6">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} onPlay={handlePlay} />
-        ))}
-      </div>
     </div>
-  );
-};
-
-export default BookCollection;
+  )
+}

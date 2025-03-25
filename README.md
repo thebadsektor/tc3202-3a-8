@@ -130,7 +130,7 @@ List all the team members involved in the project. Include their roles and respo
 
 - **Sam Gabriel Advento**: Lead Developer, Backend Developer
 - **Sam Gabriel Advento & Jay Ann Castillo**: Frontend Developer, UI/UX Designer
-- **Jay Ann Castillo & Faith Cruz**: Documentators
+- **Jay Ann Castillo & Faith Cruz & Carlos Cortez**: Documentators
 - **Gerald Villaran**: Course Instructor
 
 ## Project Timeline
