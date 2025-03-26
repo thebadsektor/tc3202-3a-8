@@ -3,7 +3,7 @@ import {Upload, Cpu, MessageSquare, Volume2} from "lucide-react";
 export default function HowItWorks() {
 
     return (
-        <div className="HowItWorks bg-gradient-to-br from-one to-six h-full w-full flex justify-center items-center">
+        <div className="HowItWorks bg-gradient-to-br from-one to-six h-screen w-full flex justify-center items-center">
             <div className="Title px-20 py-20 flex flex-col justify-center items-center gap-6">
                 <h1 className="narrAite text-5xl text-softBlack font-narrAIte font-semibold text-center">
                     How it Works?
