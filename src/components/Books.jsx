@@ -1,7 +1,7 @@
 export default function Books() {
   return(
-    <div className="Collection bg-gradient-to-br from-one to-six w-screen h-full px-40 py-10">
-      <div className="Title text-4xl md:text-5xl font-narrAIte font-bold text-softBlack mb-10">Collections.</div>
+    <div className="Collection bg-gradient-to-br from-one to-six w-full h-screen px-40 pt-40 pb-20">
+      <div className="Title text-4xl md:text-6xl font-narrAIte font-semibold text-softBlack mb-10">collections.</div>
       <div className="cursor-pointer transition-all duration-500 hover:translate-y-2 w-72 h-40 bg-neutral-50 rounded-3xl shadow-xl flex flex-row items-center justify-evenly gap-4 px-4"
   >
     <svg

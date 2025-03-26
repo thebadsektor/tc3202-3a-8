@@ -2,10 +2,9 @@ import Mockup from "../assets/HeroMockup.svg";
 
 export default function Hero() {
     return (
-        <div className="Hero bg-gradient-to-br from-one to-six h-full w-full flex flex-col md:flex-row justify-between items-center px-60 py-20">
-            {/* Left Section: Texts & Buttons */}
+        <div className="Hero bg-gradient-to-br from-one to-six h-screen w-full flex flex-col md:flex-row justify-between items-center px-40 pt-40 pb-20">
             <div className="Title flex flex-col justify-center items-start md:pl-10 gap-6 max-w-lg">
-                <h1 className="narrAite text-4xl md:text-5xl text-softBlack font-narrAIte font-semibold leading-tight">
+                <h1 className="narrAite text-4xl md:text-6xl text-softBlack font-narrAIte font-semibold leading-normal">
                     Empowering <span className="text-eight">Vision</span> Through Voice
                 </h1>
                 <h5 className="shortdes text-justify text-softBlack text-sm md:text-base font-narrAIte leading-relaxed">
