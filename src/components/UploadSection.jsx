@@ -1,21 +1,41 @@
+import axios from 'axios';
 import { useState } from "react";
 
 export default function UploadSection() {
-    const [file, setFile] = useState(null);
+    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [description, setDescription] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const handleFileChange = (e) => {
-        const selectedFile = e.target.files[0];
-        if (selectedFile) {
-            setFile(selectedFile);
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setImage(file);
+            setImagePreview(URL.createObjectURL(file));
+            setError(null);
         }
     };
 
-    const handleUpload = () => {
-        if (file) {
-            console.log("Uploading:", file.name);
-            // Add upload logic here (e.g., send to server or cloud storage)
-        } else {
-            alert("Please select a file first.");
+    const handleUpload = async () => {
+        if (!image) return;
+        setLoading(true);
+        setError(null);
+
+        const formData = new FormData();
+        formData.append('image', image);
+
+        try {
+            const response = await axios.post('http://localhost:8000/api/describe-image/', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+
+            setDescription(response.data.description);
+        } catch (error) {
+            setError("Failed to process image. Please try again.");
+            console.error('Error describing image:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -25,19 +45,41 @@ export default function UploadSection() {
                 <h2 className="text-2xl font-narrAIte font-bold text-eight mb-4">Upload Your Image</h2>
                 <input
                     type="file"
-                    onChange={handleFileChange}
-                    className="file-input"
-                />  
-                {file && (
-                    <p className="text-gray-500 mt-2">Selected: {file.name}</p>
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="file-input mb-3"
+                />
+
+                {imagePreview && (
+                    <img
+                        src={imagePreview}
+                        alt="Preview"
+                        className="w-40 h-40 object-cover rounded-lg mb-3"
+                    />
                 )}
+
+                {image && (
+                    <p className="text-gray-500 mt-2">Selected: {image.name}</p>
+                )}
+
                 <button
                     onClick={handleUpload}
-                    className="px-4 py-2 bg-eight text-one font-narrAIte font-semibold rounded-lg hover:bg-seven transition"
+                    disabled={!image || loading}
+                    className={`px-4 py-2 font-narrAIte font-semibold rounded-lg transition ${
+                        !image || loading ? "bg-gray-400 cursor-not-allowed" : "bg-eight text-one hover:bg-seven"
+                    }`}
                 >
-                    Generate
+                    {loading ? "Processing..." : "Generate"}
                 </button>
-            </div>  
+
+                {description && (
+                    <p className="mt-4 text-lg font-semibold text-eight">{description}</p>
+                )}
+
+                {error && (
+                    <p className="mt-2 text-red-500 text-sm">{error}</p>
+                )}
+            </div>
         </div>
     );
 }
