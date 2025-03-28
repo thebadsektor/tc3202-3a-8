@@ -15,7 +15,10 @@ export default function Footer() {
             <div className="text-softBlack text-right">
                 <h1 className="font-narrAIte font-bold mb-2">Follow Us</h1>
                 <div className="flex gap-4 justify-end">
-                    <Facebook size={24} className="text-eight cursor-pointer hover:scale-110 transition-transform" />
+                <a href="https://www.facebook.com/sxmgxbrxxl/" target="_blank" rel="noopener noreferrer">
+  <Facebook size={24} className="text-eight cursor-pointer hover:scale-110 transition-transform" />
+</a>
+
                     <Instagram size={24} className="text-eight cursor-pointer hover:scale-110 transition-transform" />
                     <Globe size={24} className="text-eight cursor-pointer hover:scale-110 transition-transform" />
                 </div>

@@ -41,7 +41,7 @@ export default function Hero() {
             </div>
 
             <div className="Images flex justify-center items-center pl-40">
-                <img src={Mockup} alt="Hero Mockup" className="hidden md:block w-80 md:w-[600px] object-contain" />
+                <img src={Mockup} alt="Hero Mockup" className="w-80 md:w-[600px] object-contain" />
             </div>
         </div>
     );
