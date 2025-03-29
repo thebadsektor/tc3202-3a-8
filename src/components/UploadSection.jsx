@@ -1,43 +1,49 @@
-import axios from 'axios';
 import { useState } from "react";
 
 export default function UploadSection() {
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
-    const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [description, setDescription] = useState("");
+    const [error, setError] = useState("");
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             setImage(file);
             setImagePreview(URL.createObjectURL(file));
-            setError(null);
+            setError(""); // Clear any previous errors
         }
     };
 
     const handleUpload = async () => {
         if (!image) return;
+    
         setLoading(true);
-        setError(null);
-
-        const formData = new FormData();
-        formData.append('image', image);
-
+        setDescription("");
+        setError("");
+    
         try {
-            const response = await axios.post('http://localhost:8000/api/describe-image/', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+            const formData = new FormData();
+            formData.append("file", image);
+    
+            const response = await fetch("http://127.0.0.1:8000/describe-image/", {  // Use your FastAPI endpoint
+                method: "POST",
+                body: formData,
             });
-
-            setDescription(response.data.description);
-        } catch (error) {
-            setError("Failed to process image. Please try again.");
-            console.error('Error describing image:', error);
+    
+            if (!response.ok) {
+                throw new Error("Failed to process image");
+            }
+    
+            const data = await response.json();
+            setDescription(data.description || "No description found.");
+        } catch (err) {
+            setError(err.message);
         } finally {
             setLoading(false);
         }
-    };
+    };    
 
     return (
         <div className="upload-section h-screen w-full flex flex-col items-center justify-center gap-4 p-6 bg-gradient-to-br from-one to-six">
@@ -58,9 +64,7 @@ export default function UploadSection() {
                     />
                 )}
 
-                {image && (
-                    <p className="text-gray-500 mt-2">Selected: {image.name}</p>
-                )}
+                {image && <p className="text-gray-500 mt-2">Selected: {image.name}</p>}
 
                 <button
                     onClick={handleUpload}
@@ -72,13 +76,8 @@ export default function UploadSection() {
                     {loading ? "Processing..." : "Generate"}
                 </button>
 
-                {description && (
-                    <p className="mt-4 text-lg font-semibold text-eight">{description}</p>
-                )}
-
-                {error && (
-                    <p className="mt-2 text-red-500 text-sm">{error}</p>
-                )}
+                {description && <p className="mt-4 text-lg font-semibold text-eight">{description}</p>}
+                {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
             </div>
         </div>
     );
