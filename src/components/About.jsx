@@ -1,6 +1,6 @@
 export default function About() {
     return (
-        <div className="Hero bg-gradient-to-br from-one to-six h-screen w-full flex flex-col md:flex-row justify-center items-center md:px-60 px-10 pb-20 pt-20">
+        <div className="Hero bg-gradient-to-br from-one to-six h-full w-full flex flex-col md:flex-row justify-center items-center md:px-60 px-10 pb-20 pt-40">
             <div className="Title flex flex-col justify-center items-center md:px-10 max-w-screen">
             <h5 className="about text-justify text-softBlack text-sm md:text-base font-narrAIte">About
                 </h5>

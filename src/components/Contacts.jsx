@@ -1,10 +1,12 @@
 import Sam from "../assets/Sam.jpg"
-import JayAnn from "../assets/Logo.svg"
+import JayAnn from "../assets/Jay Ann.jpg"
+import Carlos from "../assets/Carlos.jpg"
+import Faith from "../assets/Faith.jpg"
 
 export default function Contacts() {
     return (
-        <div className="bg-one w-full h-screen px-20 py-20">
-            <h1 className="text-6xl font-narrAIte text-softBlack font-semibold">devs behind this.</h1>
+        <div className="bg-creamyWhite w-full h-full px-20 py-20">
+            <h1 className="text-6xl font-narrAIte text-softBlack font-semibold">Contacts</h1>
             <div className="flex flex-row py-20 px-5 w-full h-full gap-10">
                 <div class="group shadow-xl before:hover:scale-100 before:hover:h-80 before:hover:w-80 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-blue-500 via-sky-200 to-blue-300 before:absolute before:top-0 w-80 h-80 relative bg-one flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
                 <div className="w-28 h-28 mt-8 rounded-full border-4 border-one z-10 overflow-hidden group-hover:scale-150 group-hover:-translate-x-24 group-hover:-translate-y-20 transition-all duration-500">
@@ -41,7 +43,7 @@ export default function Contacts() {
                 <div class="group shadow-xl before:hover:scale-100 before:hover:h-80 before:hover:w-80 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-pink-300 via-pink-200 to-pink-500 before:absolute before:top-0 w-80 h-80 relative bg-one flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
                         <div className="w-28 h-28 mt-8 rounded-full border-4 border-one z-10 overflow-hidden group-hover:scale-150 group-hover:-translate-x-24 group-hover:-translate-y-20 transition-all duration-500">
                     <img 
-                        src={JayAnn}
+                        src={Faith}
                         alt="Profile" 
                         className="w-full h-full object-cover"
                     />
@@ -57,7 +59,7 @@ export default function Contacts() {
                 <div class="group shadow-xl before:hover:scale-100 before:hover:h-80 before:hover:w-80 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-green-300 via-green-100 to-green-400 before:absolute before:top-0 w-80 h-80 relative bg-one flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
                 <div className="w-28 h-28 mt-8 rounded-full border-4 border-one z-10 overflow-hidden group-hover:scale-150 group-hover:-translate-x-24 group-hover:-translate-y-20 transition-all duration-500">
                     <img 
-                        src={JayAnn}
+                        src={Carlos}
                         alt="Profile" 
                         className="w-full h-full object-cover"
                     />

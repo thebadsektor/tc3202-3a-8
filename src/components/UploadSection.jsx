@@ -12,6 +12,7 @@ export default function UploadSection() {
     const [showModal, setShowModal] = useState(false);
     const [messageIndex, setMessageIndex] = useState(0);
     const [language, setLanguage] = useState("en");
+    const [abortController, setAbortController] = useState(null);
 
     const translations = {
         en: {
@@ -19,8 +20,9 @@ export default function UploadSection() {
             generate: "Generate",
             processing: "Processing...",
             selected: "Selected",
-            descriptionTitle: "Description",
+            descriptionTitle: "Short Story",
             close: "Close",
+            cancel: "Cancel",
             messages: ["Generating Description...", "Converting to Audio...", "Please Wait..."],
         },
         tl: {
@@ -28,13 +30,28 @@ export default function UploadSection() {
             generate: "Generate",
             processing: "Processing...",
             selected: "Selected",
-            descriptionTitle: "Description",
+            descriptionTitle: "Short Story",
             close: "Close",
+            cancel: "Cancel",
             messages: ["Generating Description...", "Converting to Audio...", "Please Wait..."],
         }
     };
 
     const t = translations[language];
+
+    const handleCloseLoading = () => {
+        const confirmClose = window.confirm(
+            language === "en"
+                ? "Are you sure you want to close this? Unsaved results will be lost."
+                : "Are you sure you want to close this? Unsaved results will be lost."
+        );
+        if (confirmClose) {
+            if (abortController) {
+                abortController.abort();
+            }
+            setLoading(false);
+        }
+    };
 
     const handleCloseModal = () => {
         const confirmClose = window.confirm(
@@ -67,86 +84,132 @@ export default function UploadSection() {
 
     const handleUpload = async () => {
         if (!image) return;
-
+    
         setLoading(true);
         setDescription("");
         setAudioSrc("");
         setError("");
-
+    
+        const controller = new AbortController();
+        setAbortController(controller);        
+    
         try {
             const formData = new FormData();
             formData.append("file", image);
-
+    
             const response = await fetch(`http://127.0.0.1:8000/describe-image/?language=${language}`, {
                 method: "POST",
                 body: formData,
+                signal: controller.signal, 
             });
-
+    
             if (!response.ok) throw new Error("Failed to process image");
-
+    
             const data = await response.json();
             setDescription(data.description || (language === "en" ? "No description found." : "No description found."));
             setAudioSrc(`data:audio/mpeg;base64,${data.audio_base64}`);
             setShowModal(true);
         } catch (err) {
-            setError(err.message);
+            if (err.name === "AbortError") {
+                setError(language === "en" ? "Generation cancelled." : "Generation Cancelled");
+            } else {
+                setError(err.message);
+            }
         } finally {
             setLoading(false);
+            setAbortController(null);
         }
-    };
+    };    
 
     return (
         <div className="upload-section h-screen w-full flex flex-col items-center justify-center gap-4 p-6 bg-gradient-to-br from-one to-six relative">
 
-            <div className="LanguageCard">
-                
-            </div>
-
             {loading && (
-                <div className="fixed inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center z-40">
+                <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
                     <div className="bg-white rounded-2xl p-10 flex flex-col items-center justify-center shadow-2xl">
                         <Lottie animationData={BookAnimation} className="w-52 h-52" />
-                        <p className="text-gray-700 font-medium text-lg mt-4 text-center">
+                        <p className="text-gray-700 text-sm font-semibold italic font-narrAIte mb-6 text-center">
                             {t.messages[messageIndex]}
                         </p>
+                        <button 
+                            onClick={handleCloseLoading}
+                            className="bg-eight text-one font-semibold px-6 py-2 rounded-full hover:bg-six transition">
+                            {t.cancel}
+                        </button>
                     </div>
                 </div>
             )}
 
             <div className="UploadCard bg-white rounded-3xl px-12 py-10 shadow-2xl w-full max-w-md">
-                <h2 className="text-2xl font-narrAIte font-bold text-softBlack mb-4 text-center">{t.uploadImage}</h2>
-
-                <input 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleImageChange} 
-                    className="w-full mb-4 file:mr-4 file:py-2 file:px-4 file:border-0 file:rounded-full file:bg-gray-300 file:text-sm file:font-semibold file:font-narrAIte"
-                />
-
-                {imagePreview && <img src={imagePreview} alt="Preview" className="w-40 h-40 object-cover rounded-xl mx-auto mb-4" />}
-                {image && <p className="text-gray-500 font-narrAIte text-sm text-center mb-2">{t.selected}: {image.name}</p>}
-
-                <div className="mb-4 flex flex-row">
-                    <label className="text-softBlack font-narrAIte font-semibold mr-4">
-                    Select Result Language:
-                    </label>
-
-                    <select 
-                        value={language}
-                        onChange={(e) => setLanguage(e.target.value)}
-                        className="bg-white px-6 py-2 rounded-3xl shadow-md text-sm font-narrAIte font-medium focus:outline-none"
+                <h2 className="text-2xl font-narrAIte font-bold text-softBlack mb-6 text-center">{t.uploadImage}</h2>
+            
+                <div className="flex mb-8 bg-gray-100 rounded-full p-1 w-64 mx-auto">
+                    <button 
+                        onClick={() => setLanguage('en')} 
+                        className={`flex-1 py-2 rounded-full text-sm font-narrAIte font-medium transition-all duration-300 ${language === 'en' ? 'bg-eight text-white shadow-md' : 'text-gray-600'}`}
                     >
-                        <option value="en">English</option>
-                        <option value="tl">Tagalog</option>
-                    </select>
+                        English
+                    </button>
+                    <button 
+                        onClick={() => setLanguage('tl')} 
+                        className={`flex-1 py-2 rounded-full text-sm font-narrAIte font-medium transition-all duration-300 ${language === 'tl' ? 'bg-eight text-white shadow-md' : 'text-gray-600'}`}
+                    >
+                        Tagalog
+                    </button>
                 </div>
-                <div className="">
+
+                <div className="w-full mb-6">
+                <label className="block cursor-pointer">
+                    <div className="w-full h-40 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center hover:border-eight transition-all duration-300">
+                        {imagePreview ? (
+                            <div className="relative w-full h-full">
+                                <img src={imagePreview} alt="Preview" className="w-full h-full object-cover rounded-xl" />
+                                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity duration-300 rounded-xl">
+                                    <span className="text-white font-narrAIte font-medium text-sm">Change Image</span>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="text-center">
+                                <svg className="w-10 h-10 mx-auto mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <p className="text-sm text-gray-500 font-narrAIte">{t.uploadImage}</p>
+                            </div>
+                        )}
+                    </div>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleImageChange} 
+                        className="hidden"
+                    />
+                </label>
+                
+                {image && (
+                    <p className="text-gray-500 font-narrAIte text-sm text-center mt-2">
+                        <span className="font-medium text-eight">{image.name}</span>
+                    </p>
+                )}
+            </div>
+
+                <div className="flex justify-center mt-6">
                     <button
-                    onClick={handleUpload} 
-                    disabled={!image || loading} 
-                    className="group relative bg-eight h-16 w-64 border-2 border-ten text-one text-base font-bold font-narrAIte rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:border-eight hover:text-three p-3 text-left before:absolute before:w-10 before:h-10 before:content[''] before:right-2 before:top-2 before:z-10 before:bg-indigo-500 before:rounded-full before:blur-lg before:transition-all before:duration-500 after:absolute after:z-10 after:w-16 after:h-16 after:content[''] after:bg-teal-400 after:right-6 after:top-4 after:rounded-full after:blur-lg after:transition-all after:duration-500 hover:before:right-10 hover:before:-bottom-4 hover:before:blur hover:after:-right-6 hover:after:scale-110"
+                        onClick={handleUpload} 
+                        disabled={!image || loading} 
+                        className="relative bg-eight text-white text-base font-bold font-narrAIte rounded-full overflow-hidden py-3 px-8 w-full max-w-xs hover:shadow-lg transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                    {loading ? t.processing : t.generate}
+                        <div className="relative z-10 flex items-center justify-center">
+                            {loading ? (
+                                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            ) : (
+                                <span className="mr-2"></span>
+                            )}
+                            {loading ? t.processing : t.generate}
+                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-eight to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                     </button>
                 </div>
 
@@ -154,20 +217,37 @@ export default function UploadSection() {
             </div>
 
             {showModal && (
-                <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
-                    <div className="bg-white p-10 rounded-2xl shadow-2xl max-w-xl w-full mx-6 text-center">
-                        <h2 className="text-2xl text-gray-800 font-bold mb-4">{t.descriptionTitle}</h2>
-                        <p className="text-gray-700 mb-4">{description}</p>
-                        {audioSrc && (
-                            <audio controls autoPlay className="w-full mb-6">
-                                <source src={audioSrc} type="audio/mpeg" />
-                            </audio>
-                        )}
-                        <button 
-                        onClick={handleCloseModal}
-                        className="bg-eight text-one font-semibold px-6 py-2 rounded-full hover:bg-six transition">
-                        {t.close}
-                        </button>
+                <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+                    <div className="bg-creamyWhite p-10 rounded-3xl shadow-2xl mt-20 mb-10 flex flex-row w-full max-w-4xl max-h-3/4">
+                        <div className="w-1/2 pr-6 flex flex-col">
+                            <div className="Preview rounded-xl flex-grow">
+                                {imagePreview && <img src={imagePreview} alt="Preview" className="w-full h-96 object-cover rounded-xl mx-auto" />}
+                                {image && <p className="text-md font-bold font-narrAIte text-eight italic mt-4 text-center">{image.name.replace(/\.(jpg|jpeg|png|gif)$/i, "")}
+                                </p>}
+                            </div>
+                            <div className="mt-6">
+                                {audioSrc && (
+                                    <audio controls autoPlay className="w-full">
+                                        <source src={audioSrc} type="audio/mpeg" />
+                                    </audio>
+                                )}
+                            </div>
+                        </div>
+                        <div className="w-1/2 pl-6">
+                            <div className="Description shadow-3xl rounded-xl h-full flex flex-col">
+                                <h2 className="text-2xl text-softBlack font-narrAIte font-bold mb-4">{t.descriptionTitle}</h2>
+                                <div className="overflow-y-auto max-h-96 pr-2 flex-grow mb-4">
+                                    <p className="text-softBlack font-narrAIte">{description}</p>
+                                </div>
+                                <div className="text-right mt-2">
+                                    <button 
+                                        onClick={handleCloseModal}
+                                        className="bg-eight text-one font-semibold font-narrAIte px-6 py-2 rounded-full hover:bg-six transition">
+                                        {t.close}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
