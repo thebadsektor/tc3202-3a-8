@@ -1,25 +1,30 @@
 import Mockup from "../assets/HeroMockup.svg";
+import { fadeInUp } from "../animations/variants";
+import { motion } from "framer-motion";
 
 export default function Hero() {
     return (
-        <div className="Hero bg-gradient-to-br from-one to-six h-screen w-full flex flex-col md:flex-row justify-between items-center px-40 pt-40 pb-20">
-            <div className="Title flex flex-col justify-center items-start md:pl-10 gap-6 max-w-lg">
-                <h1 className="narrAite text-4xl md:text-6xl text-softBlack font-narrAIte font-semibold leading-normal">
+        <div className="Hero bg-gradient-to-br from-one to-six dark:bg-softBlack w-full min-h-screen flex flex-col-reverse md:flex-row justify-between items-center px-6 md:px-40 pt-24 md:pt-20 pb-10 md:pb-5 overflow-hidden">
+
+            <motion.div {...fadeInUp}
+                className="Title flex flex-col justify-center items-center dark:text-creamyWhite md:items-start gap-6 text-center md:text-left max-w-full md:max-w-xl"
+            >
+                <h1 className="narrAite text-4xl md:text-6xl text-softBlack font-narrAIte font-semibold leading-tight">
                     Empowering <span className="text-eight">Vision</span> Through Voice
                 </h1>
-                <h5 className="shortdes text-justify text-softBlack text-sm md:text-base font-narrAIte leading-relaxed">
-                    Transform your visuals into vivid stories with seamless image-to-speech technology.
-                    Unlock the power of your images — whether you're exploring ideas, creating content, or capturing memorable moments, narrAIte brings your pictures to life through spoken words.
-                </h5>
+                <p className="shortdes text-softBlack text-base font-narrAIte leading-relaxed tracking-wide">
+                    <span className="font-bold">narr</span><span className="font-bold text-six">AI</span><span className="font-bold">te </span>brings your pictures to life through spoken words.
+                    Transform your images into creative short stories with seamless image-to-speech technology.
+                </p>
 
-                <div className="buttons flex flex-row justify-start items-center gap-4">
+                <div className="buttons flex flex-col sm:flex-row justify-center md:justify-start items-center gap-4 w-full">
                     <button
                         type="button"
                         className="flex justify-center gap-2 items-center shadow-xl text-lg font-narrAIte bg-one backdrop-blur-md text-softBlack font-semibold border-gray-50 
                         before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full 
                         before:-left-full before:hover:left-0 before:rounded-full before:bg-eight hover:text-gray-50 
                         before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 
-                        relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group"
+                        relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group w-full sm:w-auto"
                     >
                         <a href="/upload" className="hover:text-one">Get Started</a>
                         <svg
@@ -34,15 +39,23 @@ export default function Hero() {
                         </svg>
                     </button>
 
-                    <button className="flex justify-center bg-eight hover:bg-six text-white border-one text-lg font-narrAIte font-normal py-3 px-8 border-2 rounded-full shadow-xl">
-                        <a href="/about" className="hover:text-one">Learn More</a>
+                    <button 
+                        className="bg-eight hover:bg-six text-white text-lg font-narrAIte py-3 px-8 border-2 border-transparent rounded-full shadow-xl w-full sm:w-auto transition-colors duration-300"
+                    >
+                        <a href="/about" className="hover:text-one transition-all">Learn More</a>
                     </button>
                 </div>
-            </div>
+            </motion.div>
 
-            <div className="Images flex justify-center items-center pl-40">
-                <img src={Mockup} alt="Hero Mockup" className="w-80 md:w-[600px] object-contain" />
-            </div>
+            <motion.div {...fadeInUp}
+                className="Images flex justify-center items-center ml-10 mb-5 mt-10 md:mt-0"
+            >
+                <img
+                    src={Mockup}
+                    alt="Hero Mockup"
+                    className="w-60 sm:w-72 md:w-[600px] object-contain transition-transform duration-500"
+                />
+            </motion.div>
         </div>
     );
 }

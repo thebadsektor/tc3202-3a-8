@@ -31,11 +31,15 @@ export default function Books() {
     fetchImages();
   }, []);
 
-  const handleUsePhoto = () => {
-    alert(`You used: ${selectedImage.name}`);
-    // Handle logic here (e.g. pass URL to another component, save to DB, etc.)
-    setSelectedImage(null); // Close modal
-  };
+  const handleDownloadImage = () => {
+    const link = document.createElement("a");
+    link.href = selectedImage.url;
+    link.download = selectedImage.name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setSelectedImage(null);
+  };  
 
   return (
     <div className="Collections bg-gradient-to-br from-one to-six pt-40 min-h-screen min-w-full px-4">
@@ -78,10 +82,10 @@ export default function Books() {
             />
             <h2 className="text-xl font-narrAIte font-semibold mb-2">{selectedImage.name.replace(/\.(jpg|jpeg|png|gif)$/i, "")}</h2>
             <button
-              onClick={handleUsePhoto}
+              onClick={handleDownloadImage}
               className="bg-eight text-one font-narrAIte font-semibold px-4 py-2 rounded-3xl hover:bg-six transition"
             >
-              Generate Story
+              Download Image
             </button>
           </div>
         </div>

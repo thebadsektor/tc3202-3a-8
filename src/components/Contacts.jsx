@@ -53,7 +53,7 @@ export default function Contacts() {
                         <p className="text-md text-softBlack font-narrAIte">Documentator</p>
                         <p className="text-sm text-softBlack font-narrAIte italic">placeholder@gmail.com</p>
                     </div>
-                    <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="#">Follow</a>
+                    <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24">Follow</a>
                 </div>
 
                 <div class="group shadow-xl before:hover:scale-100 before:hover:h-80 before:hover:w-80 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-green-300 via-green-100 to-green-400 before:absolute before:top-0 w-80 h-80 relative bg-one flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
@@ -67,9 +67,9 @@ export default function Contacts() {
                         <div class="z-10  group-hover:-translate-y-10 transition-all duration-500">
                         <span class="text-2xl font-narrAIte font-semibold">Carlos Cortez III</span>
                         <p className="text-md text-softBlack font-narrAIte">Documentator</p>
-                        <p className="text-sm text-softBlack font-narrAIte italic">placeholder@gmail.com</p>
+                        <p className="text-sm text-softBlack font-narrAIte italic">corteziiicarlos@gmail.com</p>
                     </div>
-                    <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="#">Follow</a>
+                    <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24">Follow</a>
                 </div>
             </div>
         </div>

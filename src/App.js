@@ -4,15 +4,17 @@ import Home from "./pages/Home";
 import Collections from "./pages/Collections";
 import Upload from "./pages/Upload";
 import AboutUs from "./pages/AboutUs";
+import Features from "./pages/Features";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/collections" element={<Collections />} />
+        <Route path="/features" element={<Features />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/upload" element={<Upload />} />
-        <Route path="/collections" element={<Collections />} />
       </Routes>
     </Router>
   );
