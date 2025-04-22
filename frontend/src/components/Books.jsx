@@ -43,10 +43,13 @@ export default function Books() {
 
   return (
     <div className="Collections bg-gradient-to-br from-one to-six pt-40 min-h-screen min-w-full px-4">
-      <h1 className="text-4xl md:text-6xl font-narrAIte font-semibold text-softBlack mb-8 text-center">Collections</h1>
+      <h1 className="text-4xl md:text-6xl font-narrAIte font-semibold text-softBlack mb-2 text-center">Collections</h1>
+      <p className="text-center font-narrAIte line-clamp-2 max-w-2xl mx-auto mb-6 text-softBlack">Explore our curated collection of book covers. Pick one that inspires you and let
+        <span className="font-bold"> narr</span><span className="font-bold text-eight">AI</span><span className="font-bold">te</span> craft a unique story from it.
+      </p>
 
       {loading ? (
-        <p className="text-white text-xl text-center">Loading books...</p>
+        <p className="font-narrAIte text-softBlack text-md italic text-center">Loading books...</p>
       ) : (
         <div className="flex flex-wrap gap-6 justify-center">
           {images.map((image, index) => (

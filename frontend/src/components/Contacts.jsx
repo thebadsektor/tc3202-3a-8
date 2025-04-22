@@ -51,7 +51,7 @@ export default function Contacts() {
                         <div class="z-10  group-hover:-translate-y-10 transition-all duration-500">
                         <span class="text-2xl font-narrAIte font-semibold">Faith Cruz</span>
                         <p className="text-md text-softBlack font-narrAIte">Documentator</p>
-                        <p className="text-sm text-softBlack font-narrAIte italic">placeholder@gmail.com</p>
+                        <p className="text-sm text-softBlack font-narrAIte italic">faithcruz072@gmail.com</p>
                     </div>
                     <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24">Follow</a>
                 </div>

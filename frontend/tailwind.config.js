@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -21,6 +20,11 @@ module.exports = {
       },
       fontFamily: {
         narrAIte: ["Poppins", "sans-serif"],
+      },
+      animation: {
+        "spin-fast": "spin 1s linear infinite",
+        "spin-slow": "spin 4s linear infinite", // 4 seconds for slower spin
+        "spin-custom": "spin 10s linear infinite", // 2.5 seconds for custom speed
       },
     },
   },
