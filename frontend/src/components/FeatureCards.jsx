@@ -1,13 +1,13 @@
 import {Image, BookOpen, Sparkles, Heart} from "lucide-react";
 import { Link } from "react-router-dom"; 
-import { FadeInWhenVisible, fadeInWhenVisible } from "../animations/variants";
+import { FadeInWhenVisible } from "../animations/FadeInWhenVisible";
  
 export default function Features() {
     return (
         <FadeInWhenVisible>
-            <div className="Background creamyWhite h-auto mx-6 md:mx-40 flex flex-wrap md:mb-10">
+            <div className="Background bg-creamyWhite h-auto mx-6 md:mx-40 flex flex-wrap">
 
-                <div className="Cards flex flex-col md:flex-row gap-6 ">
+                <div className="Cards flex flex-col md:flex-row gap-6">
                     <div className="Features relative bg-softBlack rounded-3xl p-10 md:pt-60 md:px-10 shadow-xl flex flex-col">
                         <div className="bg-white w-40 h-40 rounded-full absolute -top-10 -left-10 animate-pulse blur-3xl"></div>
                         <h1 className="text-4xl md:text-6xl text-creamyWhite font-narrAIte font-semibold mb-4">Features</h1>

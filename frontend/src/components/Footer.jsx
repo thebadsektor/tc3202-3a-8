@@ -3,17 +3,17 @@ import Logo from "../assets/LogoNoBg.svg";
 
 export default function Footer() {
     return (
-        <div className="Footer bg-creamyWhite flex justify-between items-center py-10 px-40">
-            {/* Left Column */}
+        <div className="Footer bg-creamyWhite flex justify-between items-center py-10 px-6 md:px-40">
+
             <div className="text-softBlack text-left">
-                <img src={Logo} alt="narrAIte Logo" className="h-8 dark:bg-creamyWhite" />
-                <h1 className="dark:text-creamyWhite text-softBlack text-2xl font-narrAIte font-bold cursor-pointer">
-                    <a href="/">narr<span className="dark:text-six text-eight">AI</span>te</a>
-                </h1>
-                <p>your AI storyteller</p>
+                <a href="/">
+                    <h1 className=" text-softBlack text-2xl font-narrAIte font-bold cursor-pointer">
+                            narr<span className="text-eight">AI</span>te
+                    </h1>
+                </a>
+                <p className="font-narrAIte text-sm">your AI storyteller</p>
             </div>
 
-            {/* Right Column */}
             <div className="text-softBlack text-right">
                 <h1 className="font-narrAIte font-bold mb-2">Follow Us</h1>
                 <div className="flex gap-4 justify-end">

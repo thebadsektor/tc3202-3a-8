@@ -31,7 +31,7 @@ export default function NavBar() {
             </div>
             </a>
             
-            <nav className="hidden md:flex gap-8 text-xl font-narrAIte">
+            <nav className="hidden md:flex gap-4 text-lg font-narrAIte">
                 <a href="/" className="hover:text-creamyWhite hover:bg-eight py-2 px-4 rounded-3xl transition-all duration-300">Home</a>
                 <a href="/collections" className="hover:text-creamyWhite hover:bg-eight py-2 px-4 rounded-3xl transition-all duration-300">Collections</a>
                 <a href="/features" className="hover:text-creamyWhite hover:bg-eight py-2 px-4 rounded-3xl transition-all duration-300">Features</a>
@@ -52,7 +52,7 @@ export default function NavBar() {
             </div>
 
             {menuOpen && (
-                <div className="absolute top-full left-0 w-full bg-creamyWhite font-narrAIte flex flex-col items-center gap-4 py-4 shadow-md md:hidden">
+                <div className="absolute top-full left-0 w-full bg-creamyWhite font-narrAIte flex flex-col items-center gap-4 pt-2 pb-8 shadow-md md:hidden">
                     <a href="/" className="hover:text-creamyWhite hover:bg-eight py-2 px-4 rounded-3xl transition-all duration-300" onClick={toggleMenu}>Home</a>
                     <a href="/collections" className="hover:text-creamyWhite hover:bg-eight py-2 px-4 rounded-3xl transition-all duration-300" onClick={toggleMenu}>Collections</a>
                     <a href="/features" className="hover:text-creamyWhite hover:bg-eight py-2 px-4 rounded-3xl transition-all duration-300" onClick={toggleMenu}>Features</a>

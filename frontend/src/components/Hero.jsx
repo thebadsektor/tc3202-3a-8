@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
     return (
-        <div className="Background bg-creamyWhite pt-14 md:pt-20 md:pb-2">
+        <div className="Background bg-creamyWhite pt-14 mx-6 md:mx-40 md:pt-20 md:pb-2">
             
-            <div className="Hero relative bg-gradient-to-br from-one to-six rounded-3xl my-10 mx-6 md:mx-40 p-10 md:p-20 shadow-xl overflow-hidden flex flex-col md:flex-row">
+            <div className="Hero relative bg-gradient-to-br from-one to-six rounded-3xl my-10 p-10 md:p-20 shadow-xl overflow-hidden flex flex-col md:flex-row">
 
                 <motion.div {...fadeInLeft} className="">
                     <div className="z-10 ">
