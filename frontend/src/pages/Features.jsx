@@ -1,11 +1,13 @@
 import NavBar from "../components/NavBar";
-import FeatureCards from "../components/FeatureCards";
+import FullFeatures from "../components/FullFeatures";
+import Footer from "../components/Footer";
 
 export default function Features() {
     return (
         <>
         <NavBar />
-        <FeatureCards />
+        <FullFeatures />
+        <Footer />
         </>
     );
 }

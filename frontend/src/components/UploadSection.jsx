@@ -122,7 +122,10 @@ export default function UploadSection() {
     };    
 
     return (
-        <div className="upload-section h-screen w-full flex flex-col items-center justify-center gap-4 p-6 bg-gradient-to-br from-one to-six relative">
+
+        <div className="Background bg-creamyWhite pt-14 mx-6 md:mx-40 md:pt-20 md:pb-2">
+
+            <div className="upload-section p-10 flex flex-col items-center rounded-3xl md:mt-10 justify-center gap-4 bg-gradient-to-br from-one to-six relative">
 
             {loading && (
                 <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
@@ -142,7 +145,7 @@ export default function UploadSection() {
 
             <div className="UploadCard bg-white rounded-3xl px-12 py-10 shadow-2xl w-full max-w-md">
                 <h2 className="text-2xl font-narrAIte font-bold text-softBlack mb-6 text-center">{t.uploadImage}</h2>
-            
+
                 <div className="flex mb-8 bg-gray-100 rounded-full p-1 w-64 mx-auto">
                     <button 
                         onClick={() => setLanguage('en')} 
@@ -218,7 +221,7 @@ export default function UploadSection() {
 
             {showModal && (
                 <div className="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-                    <div className="bg-creamyWhite p-10 rounded-3xl shadow-2xl mt-20 mb-10 flex flex-row w-full max-w-4xl max-h-3/4">
+                    <div className="bg-creamyWhite p-6 md:p-10 rounded-3xl shadow-2xl mt-20 mb-10 flex flex-col md:flex-row w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                         <div className="w-1/2 pr-6 flex flex-col">
                             <div className="Preview rounded-xl flex-grow">
                                 {imagePreview && <img src={imagePreview} alt="Preview" className="w-full h-96 object-cover rounded-xl mx-auto" />}
@@ -251,6 +254,8 @@ export default function UploadSection() {
                     </div>
                 </div>
             )}
+            </div>
         </div>
+        
     );
 }

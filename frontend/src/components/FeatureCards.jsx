@@ -1,6 +1,7 @@
 import {Image, BookOpen, Sparkles, Heart} from "lucide-react";
-import { Link } from "react-router-dom"; 
 import { FadeInWhenVisible } from "../animations/FadeInWhenVisible";
+import { scaleOnHover } from "../animations/variants";
+import { motion } from "framer-motion";
  
 export default function Features() {
     return (
@@ -11,16 +12,19 @@ export default function Features() {
                     <div className="Features relative bg-softBlack rounded-3xl p-10 md:pt-60 md:px-10 shadow-xl flex flex-col">
                         <div className="bg-white w-40 h-40 rounded-full absolute -top-10 -left-10 animate-pulse blur-3xl"></div>
                         <h1 className="text-4xl md:text-6xl text-creamyWhite font-narrAIte font-semibold mb-4">Features</h1>
-                        <p className="text-sm font-narrAIte text-creamyWhite max-w-md">
+                        <p className="text-sm font-narrAIte text-creamyWhite mb-6 max-w-md">
                         Explore how <span className="font-bold">narr</span><span className="font-bold text-four">AI</span><span className="font-bold">te </span> 
                         transforms visual content into an immersive, joyful experience, making short stories and illustrations come to life through sound.
                         </p>
-                        <Link
-                        to="/features"
-                        className="mt-4 inline-block font-narrAIte text-creamyWhite font-semibold"
-                        >
-                        Learn More →
-                        </Link>
+                        <motion.div {...scaleOnHover}>
+                            <a
+                                href="/features"
+                                className="background-blur-xl border-creamyWhite text-creamyWhite font-narrAIte border-2 rounded-3xl py-2 px-4 mt-16 text-center hover:text-one transition-all"
+                            >
+                                Learn More
+                            </a>
+                        </motion.div>
+
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6 font-narrAIte">

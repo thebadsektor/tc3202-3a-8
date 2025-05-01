@@ -1,7 +1,7 @@
 import { FadeInWhenVisible } from "../animations/FadeInWhenVisible";
 import { scaleOnHover } from "../animations/variants";
 import { motion } from "framer-motion";
-import BG from "../assets/BG.jpg";
+import BG from "../assets/BG.webp";
 
 export default function NoPicture() {
     return (
@@ -12,6 +12,8 @@ export default function NoPicture() {
 
                     <div className="Card relative bg-softBlack rounded-3xl p-10 shadow-xl md:flex-row flex-1">
                         <img
+                        alt="BG"
+                        loading="lazy"
                         src={BG}
                         className="absolute inset-0 object-cover h-full w-full rounded-3xl opacity-80"
                         ></img>
