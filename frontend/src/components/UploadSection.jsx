@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import BookAnimation from "../assets/Books.json";
+import {FadeInWhenVisible} from "../animations/FadeInWhenVisible";
 
 export default function UploadSection() {
     const [image, setImage] = useState(null);
@@ -124,7 +125,8 @@ export default function UploadSection() {
     return (
 
         <div className="Background bg-creamyWhite pt-14 mx-6 md:mx-40 md:pt-20 md:pb-2">
-
+            
+            <FadeInWhenVisible>
             <div className="upload-section p-10 flex flex-col items-center rounded-3xl md:mt-10 justify-center gap-4 bg-gradient-to-br from-one to-six relative">
 
             {loading && (
@@ -255,6 +257,7 @@ export default function UploadSection() {
                 </div>
             )}
             </div>
+            </FadeInWhenVisible>
         </div>
         
     );
