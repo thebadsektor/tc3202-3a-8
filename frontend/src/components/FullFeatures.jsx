@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {FadeInWhenVisible} from "../animations/FadeInWhenVisible";
 
 export default function FullFeatures() {
   const [sectionIndex, setSectionIndex] = useState(0);
@@ -26,8 +27,8 @@ export default function FullFeatures() {
     <div className="bg-creamyWhite pt-14 mx-6 md:mx-40 md:pt-20 md:pb-2">
       <div className="bg-gradient-to-br from-one to-six rounded-3xl my-10 p-10 md:p-20 shadow-xl flex flex-col">
 
-        {/* Title Section */}
-        <div className="p-10 md:p-20 flex flex-col justify-center items-center">
+        <FadeInWhenVisible>
+        <div className="p-10 md:p-10 flex flex-col justify-center items-center">
           <h1 className="text-4xl md:text-6xl font-narrAIte font-semibold text-softBlack">
             Features
           </h1>
@@ -38,8 +39,8 @@ export default function FullFeatures() {
             visual content into immersive joy, bringing stories to life through sound.
           </p>
         </div>
+        </FadeInWhenVisible>
 
-        {/* Scrollable Sticky Section */}
         <div className="relative h-[400vh]">
           {sections.map((item, i) => (
             <div

@@ -27,14 +27,14 @@ export default function UploadSection() {
             messages: ["Generating Description...", "Converting to Audio...", "Please Wait..."],
         },
         tl: {
-            uploadImage: "Upload Your Image",
-            generate: "Generate",
-            processing: "Processing...",
-            selected: "Selected",
-            descriptionTitle: "Short Story",
-            close: "Close",
-            cancel: "Cancel",
-            messages: ["Generating Description...", "Converting to Audio...", "Please Wait..."],
+            uploadImage: "I-Upload ang Imahe",
+            generate: "Lumikha ng Kwento",
+            processing: "Pinoproseso...",
+            selected: "Napili",
+            descriptionTitle: "Maikling Kwento",
+            close: "Isara",
+            cancel: "Ikansela",
+            messages: ["Lumilikha ng Kwento...", "Ginagawang tunog...", "Maghintay..."],
         }
     };
 
@@ -44,7 +44,7 @@ export default function UploadSection() {
         const confirmClose = window.confirm(
             language === "en"
                 ? "Are you sure you want to close this? Unsaved results will be lost."
-                : "Are you sure you want to close this? Unsaved results will be lost."
+                : "Sigurado ka ba? Lahat ng resulta ay mawawala."
         );
         if (confirmClose) {
             if (abortController) {
@@ -58,7 +58,7 @@ export default function UploadSection() {
         const confirmClose = window.confirm(
             language === "en"
                 ? "Are you sure you want to close this? Unsaved results will be lost."
-                : "Are you sure you want to close this? Unsaved results will be lost."
+                : "Sigurado ka ba? Lahat ng resulta ay mawawala."
         );
         if (confirmClose) {
             setShowModal(false);
@@ -69,7 +69,7 @@ export default function UploadSection() {
         if (loading) {
             const interval = setInterval(() => {
                 setMessageIndex((prev) => (prev + 1) % t.messages.length);
-            }, 1500);
+            }, 10000);
             return () => clearInterval(interval);
         }
     }, [loading, t.messages]);
@@ -107,12 +107,12 @@ export default function UploadSection() {
             if (!response.ok) throw new Error("Failed to process image");
     
             const data = await response.json();
-            setDescription(data.description || (language === "en" ? "No description found." : "No description found."));
+            setDescription(data.description || (language === "en" ? "No description found." : "Bigong Nagawa."));
             setAudioSrc(`data:audio/mpeg;base64,${data.audio_base64}`);
             setShowModal(true);
         } catch (err) {
             if (err.name === "AbortError") {
-                setError(language === "en" ? "Generation cancelled." : "Generation Cancelled");
+                setError(language === "en" ? "Generation cancelled." : "Paglikha ay kinansela");
             } else {
                 setError(err.message);
             }

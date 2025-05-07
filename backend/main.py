@@ -2,11 +2,13 @@ from fastapi import FastAPI, File, UploadFile, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from mistralai.client import MistralClient
-from gtts import gTTS
+from TTS.api import TTS
 from dotenv import load_dotenv
 import io
 import base64
 import os
+import traceback
+import soundfile as sf
 
 app = FastAPI()
 
@@ -24,8 +26,12 @@ api_key = os.getenv("MISTRAL_API_KEY")
 if not api_key:
     raise ValueError("Missing MISTRAL_API_KEY in environment variables")
 
+#MODELS
 client = MistralClient(api_key=api_key)
 model = "pixtral-12b-2409"
+
+tts_model = "tts_models/en/ljspeech/tacotron2-DDC"
+tts = TTS(tts_model)
 
 @app.post("/describe-image/")
 async def describe_image(
@@ -57,9 +63,9 @@ async def describe_image(
         response = client.chat(model=model, messages=messages)
         description = response.choices[0].message.content.strip()
 
-        tts = gTTS(text=description, lang=language)
+        wav = tts.tts(description)  # This returns a NumPy array
         audio_buffer = io.BytesIO()
-        tts.write_to_fp(audio_buffer)
+        sf.write(audio_buffer, wav, samplerate=22050, format='WAV')  # Save directly to buffer
         audio_buffer.seek(0)
 
         audio_base64 = base64.b64encode(audio_buffer.read()).decode('utf-8')
@@ -70,4 +76,6 @@ async def describe_image(
         })
 
     except Exception as e:
+        print("Error occurred:", str(e))
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
