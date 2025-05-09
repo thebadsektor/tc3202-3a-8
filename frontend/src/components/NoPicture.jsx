@@ -5,7 +5,7 @@ import BG from "../assets/BG.webp";
 
 export default function NoPicture() {
     return (
-        <div className="Background bg-creamyWhite h-auto py-10 mx-6 md:mx-40 md:pt-10 md:pb-6">
+        <div className="Background bg-creamyWhite h-auto py-10 mx-6 md:mx-40 md:pt-8 md:pb-6">
 
             <FadeInWhenVisible>
                 <div className="flex flex-col md:flex-row gap-6">

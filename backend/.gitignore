@@ -6,3 +6,7 @@ venv
 
 # env
 .env
+
+# dataset
+wavs
+metadata.csv

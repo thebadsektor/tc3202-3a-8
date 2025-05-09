@@ -1,5 +1,4 @@
 import { FadeInWhenVisible } from "../animations/FadeInWhenVisible";
-import {Image, BookOpen, Sparkles, Heart} from "lucide-react";
 import Sam from "../assets/Sam.jpg"
 import JayAnn from "../assets/Jay Ann.jpg"
 import Carlos from "../assets/Carlos.jpg"
@@ -35,7 +34,7 @@ export default function Contacts() {
                             <p className="text-md text-softBlack font-narrAIte">Full-Stack Developer</p>
                             <p className="text-sm text-softBlack font-narrAIte italic">smgbrl101010@gmail.com</p>
                         </div>
-                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/sxmgxbrxxl">Follow</a>
+                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/sxmgxbrxxl" target="_blank" rel="noopener noreferrer">Follow</a>
                     </div>
 
                     <div class="group shadow-xl before:hover:scale-100 before:hover:h-80 before:hover:w-80 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-sky-300 via-sky-100 to-pink-300 before:absolute before:top-0 w-80 h-80 relative bg-one flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
@@ -51,7 +50,7 @@ export default function Contacts() {
                             <p className="text-md text-softBlack font-narrAIte">UI Designer</p>
                             <p className="text-sm text-softBlack font-narrAIte italic">jay.castll2402@gmail.com</p>
                         </div>
-                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24">Follow</a>
+                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24" target="_blank" rel="noopener noreferrer">Follow</a>
                     </div>
 
                     <div class="group shadow-xl before:hover:scale-100 before:hover:h-80 before:hover:w-80 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-pink-300 via-pink-200 to-pink-500 before:absolute before:top-0 w-80 h-80 relative bg-one flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
@@ -67,7 +66,7 @@ export default function Contacts() {
                             <p className="text-md text-softBlack font-narrAIte">Documentator</p>
                             <p className="text-sm text-softBlack font-narrAIte italic">faithcruz072@gmail.com</p>
                         </div>
-                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24">Follow</a>
+                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24" target="_blank" rel="noopener noreferrer">Follow</a>
                     </div>
 
                     <div class="group shadow-xl before:hover:scale-100 before:hover:h-80 before:hover:w-80 before:hover:rounded-b-2xl before:transition-all before:duration-500 before:content-[''] before:w-80 before:h-24 before:rounded-t-2xl before:bg-gradient-to-bl from-green-300 via-green-100 to-green-400 before:absolute before:top-0 w-80 h-80 relative bg-one flex flex-col items-center justify-center gap-2 text-center rounded-2xl overflow-hidden">
@@ -83,7 +82,7 @@ export default function Contacts() {
                             <p className="text-md text-softBlack font-narrAIte">Documentator</p>
                             <p className="text-sm text-softBlack font-narrAIte italic">corteziiicarlos@gmail.com</p>
                         </div>
-                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24">Follow</a>
+                        <a class="bg-eight px-4 py-1 font-narrAIte text-one rounded-md z-10 hover:scale-125 transition-all duration-500 hover:bg-six" href="https://github.com/jayann24" target="_blank" rel="noopener noreferrer">Follow</a>
                     </div>
                     </div>
                 </div>
