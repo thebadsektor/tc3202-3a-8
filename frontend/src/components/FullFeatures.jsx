@@ -22,12 +22,12 @@ export default function FullFeatures() {
                 key={i}
                 className="relative flex flex-row"
               >
-                  <div className="py-4 flex flex-col justify-center text-xl md:text-2xl font-narrAIte font-semibold text-softBlack">
-                    <div className="text-4xl md:text-5xl flex items-center">
+                  <div className="py-2 flex flex-col font-narrAIte text-softBlack">
+                    <div className="text-4xl md:text-4xl font-semibold flex items-center">
                       {item.logo}
                       {item.text}
                     </div>
-                    <p className="text-sm md:text-md font-normal">
+                    <p className="">
                       {item.paragraph}
                     </p>
                 </div>

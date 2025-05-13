@@ -3,10 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from mistralai.client import MistralClient
 from TTS.api import TTS
+from gtts import gTTS
 from dotenv import load_dotenv
 import io
 import base64
 import os
+import torch
 import traceback
 import soundfile as sf
 
@@ -14,7 +16,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], #need for update?
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -22,19 +24,21 @@ app.add_middleware(
 
 load_dotenv()
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
 api_key = os.getenv("MISTRAL_API_KEY")
 if not api_key:
     raise ValueError("Missing MISTRAL_API_KEY in environment variables")
 
-#MODELS
+# MODELS
 client = MistralClient(api_key=api_key)
 model = "pixtral-12b-2409"
 
 tts_model = "tts_models/en/ljspeech/tacotron2-DDC"
-tts = TTS(tts_model)
+tts = TTS(tts_model).to(device)
 
-@app.post("/describe-image/")
-async def describe_image(
+@app.post("/create-story/")
+async def create_story(
     file: UploadFile = File(...),
     language: str = Query("en", enum=["en", "tl"])
 ):
@@ -63,11 +67,16 @@ async def describe_image(
         response = client.chat(model=model, messages=messages)
         description = response.choices[0].message.content.strip()
 
-        wav = tts.tts(description)  # This returns a NumPy array
         audio_buffer = io.BytesIO()
-        sf.write(audio_buffer, wav, samplerate=22050, format='WAV')  # Save directly to buffer
-        audio_buffer.seek(0)
 
+        if language == "en":
+            wav = tts.tts(description)
+            sf.write(audio_buffer, wav, samplerate=22050, format='WAV')
+        else:
+            tts_obj = gTTS(text=description, lang='tl')
+            tts_obj.write_to_fp(audio_buffer)
+
+        audio_buffer.seek(0)
         audio_base64 = base64.b64encode(audio_buffer.read()).decode('utf-8')
 
         return JSONResponse(content={

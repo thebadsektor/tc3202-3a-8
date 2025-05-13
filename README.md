@@ -1,6 +1,6 @@
 # TC-3202 [narrAIte]
 
-![Project Banner](https://via.placeholder.com/1200x400.png?text=Project+Banner+Placeholder)
+![Project Banner](./frontend/public/Banner.png)
 
 ## Table of Contents
 
@@ -21,40 +21,30 @@
 
 ## Introduction
 
-Provide a brief introduction to the project. Explain the purpose, scope, and the problem it solves in a few sentences.
+Assistive technology is a device, software, or system that helps individuals with disabilities perform functions that might otherwise be difficult or impossible. Therefore, we developed "narrAIte," an assistive technology designed to support and benefit blind people. This innovation aims to enhance accessibility and provide a more inclusive experience, particularly for individuals with visual impairments, by utilizing technology to address their unique needs.
 
 ## Project Overview
 
-Describe the project in detail. Include:
-
-- The project's background or context.
-- Its target audience or users.
-- Any real-world applications or potential impact.
+narrAite automatically creates and narrates stories based on visual inputs by combining text-to-speech and image recognition technology. This enables blind youngsters to interact meaningfully with visual content by converting still images into dynamic audio narratives. It shows how artificial intelligence may be used to develop inclusive digital solutions that provide people with disabilities more authority.
 
 ## Objectives
 
-State the main objectives of the capstone project, such as:
-
-- Develop a solution for [problem].
-- Implement features to [goal].
-- Test and validate [key aspect].
+- Develop a solution for [Blind Inclusivity].
+- Implement features to [make a story that can be understand by impaired].
+- Test and validate [Image to Speech].
 
 ## Features
 
-List the main features of the project:
-
-- Feature 1: Brief description.
-- Feature 2: Brief description.
-- Feature 3: Brief description.
+- Accessible: Account is not needed.
+- Free Resources: Collections Tab offers series of photos that the user can use.
+- Audible: Crafted Stories can be heard loud and clear.
 
 ## Technologies Used
 
-Mention the tools, frameworks, and technologies used in the project:
-
-- Programming Languages: [e.g., Python, JavaScript, etc.]
-- Frameworks/Libraries: [e.g., React, Flask, etc.]
-- Databases: [e.g., MySQL, MongoDB, etc.]
-- Other Tools: [e.g., Git, Docker, etc.]
+- Programming Languages: Python, JavaScript, HTML, TailwindCSS
+- Frameworks/Libraries: React, FastAPI
+- Databases: Firebase Storage
+- Other Tools: MistralAI, CoquiTTS, gTTS
 
 ## Setup and Installation
 
@@ -62,20 +52,29 @@ Step-by-step instructions for setting up the project locally.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/thebadsektor/tc3202-3a-8.git
    ```
 2. **Install dependencies:**
    - If using `npm`:
    ```bash
-   git clone https://github.com/your-repo-url.git
+   cd frontend
+   ```
+   ```bash
+   npm install
    ```
    - If using `pip` (for Python projects):
    ```bash
-   git clone https://github.com/your-repo-url.git
+   cd backend
+   ```
+   ```bash
+   pip install -r requirements.txt
    ```
 3. **Configure environment variables (if any)**: Provide instructions for setting up .env files or any other required configurations.
    ```bash
-   git clone https://github.com/your-repo-url.git
+   python3.11 -m venv venv
+   ```
+   ```bash
+   source venv/Scripts/activate
    ```
 4. **Run the project:**
    - For web projects:
@@ -84,25 +83,18 @@ Step-by-step instructions for setting up the project locally.
    ```
    - IFor backend services:
    ```bash
-   python app.py
+   uvicorn main:app --reload
    ```
 
 **Note:** If your project has external depencies like XAMPP, MySQL, special SDK, or other environemnt setup, create another section for it.
 
 ## Usage Instructions
 
-Provide detailed instructions on how to use the project after setup:
-
-- How to access the application.
-- Example commands or API calls (if applicable).
-- Databases: [e.g., MySQL, MongoDB, etc.]
-- Screenshots or GIFs showcasing key functionalities (optional).
-
-![UI Placeholder](https://via.placeholder.com/1200x700.png?text=UI+Placeholder)
-
-Another Screenshot
-
-![UI Placeholder](https://via.placeholder.com/1200x700.png?text=UI+Placeholder)
+- Once the Landing page is shown, Click "Get Started".
+- Choose your story language.
+- Upload your desired image.
+- Optional: The user can choose from our Collections Tab
+- Click "Generate" and wait for the process.
 
 ## Project Structure
 
@@ -110,17 +102,32 @@ Explain the structure of the project directory. Example:
 
 ```bash
 .
-├── 📂 src/
-│   ├── 📂 components/
-│   │   ├── <component>
-│   │   ├── <anotherComponent>
+├── 📂 backend/
+│   ├── .gitignore
+│   ├── main.py
+│   └── requirements.txt
+├── 📂 frontend/
+│   ├──📂 public/
+│   │   ├── Banner.png
+│   │   ├── index.html
+│   │   ├── LogoWithBorder.svg
+│   ├── 📂 src/
+│   │   ├── 📂 animations/
+│   │   │    └── <animations>
+│   │   ├── 📂 assets/
+│   │   │    └── <pictures>
+│   │   ├── 📂 components/
+│   │   │    └── <component>
+│   │   ├── 📂 pages/
+│   │   │    └── <page>
+│   │   ├── 📂 styles/
+│   │   │    └── <cssfile>
 │   │   └── ...
-│   ├── 📂 pages/
-│   └── 📂 utils/
-├── 📂 public/
-├── 📂 tests/
-├── .env.example
-├── package.json
+│   ├── .gitignore
+│   └── package-lock.json
+│   └── package.json
+│   └── postcss.config.js
+│   └── tailwind.config.js
 └── README.md
 ```
 
@@ -142,31 +149,24 @@ Outline the project timeline, including milestones or deliverables. Example:
 - **Week 5-6 (March 10)** : Plan User Journey and Refinement
 - **Week 7-8 (March 12)** : Research
 - **Week 8-9 (March 18)** : Repository Preparation
+- **Week 9-10 (March 24)** : Frontend Coding
+- **Week 11-14 (March 31)** : Backend Coding and Major to Minor Changes
+- **Week 16-18 (April 21)** : Dataset Preparation
+- **Week 18 (May 8)** : Model Training
+- **Week 19 (May 13)** : Checking
 
 ## Changelog
 
-### [Version 1.0.0] - 2024-09-07
+### [Version 1.0.0] - 2025-05-13
 
 - Initial release of the project.
-- Added basic functionality for [Feature 1], [Feature 2], and [Feature 3].
-
-### [Version 1.1.0] - 2024-09-14
-
-- Improved user interface for [Feature 1].
-- Fixed bugs related to [Feature 2].
-- Updated project documentation with setup instructions.
-
-### [Version 1.2.0] - 2024-09-21
-
-- Added new functionality for [Feature 4].
-- Refactored codebase for better performance.
-- Added unit tests for [Feature 3] and [Feature 4].
+- Added basic functionality for Collections and Upload Section.
 
 ## Acknowledgments
 
 Acknowledge any resources, mentors, or external tools that helped in completing the project.
 
-This project was built from [Original Project Name](https://github.com/username/original-repo), created by [Original Author's Name]. You can view the original repository [here](https://github.com/username/original-repo).
+This project was built from [narrAIte](https://github.com/thebadsektor/tc3202-3a-8.git), created by [BSCS-DS 3A Group 8]. You can view the original repository [here](https://github.com/thebadsektor/tc3202-3a-8.git).
 
 ## License
 

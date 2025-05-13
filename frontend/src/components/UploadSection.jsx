@@ -98,7 +98,7 @@ export default function UploadSection() {
             const formData = new FormData();
             formData.append("file", image);
     
-            const response = await fetch(`http://127.0.0.1:8000/describe-image/?language=${language}`, {
+            const response = await fetch(`http://127.0.0.1:8000/create-story/?language=${language}`, {
                 method: "POST",
                 body: formData,
                 signal: controller.signal, 

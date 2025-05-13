@@ -8,5 +8,4 @@ venv
 .env
 
 # dataset
-wavs
-metadata.csv
+finetuned
