@@ -25,11 +25,11 @@ Assistive technology is a device, software, or system that helps individuals wit
 
 ## Project Overview
 
-narrAite automatically creates and narrates stories based on visual inputs by combining text-to-speech and image recognition technology. This enables blind youngsters to interact meaningfully with visual content by converting still images into dynamic audio narratives. It shows how artificial intelligence may be used to develop inclusive digital solutions that provide people with disabilities more authority.
+narrAIte automatically creates and narrates stories based on visual inputs by combining text-to-speech and image recognition technology. This enables blind youngsters to interact meaningfully with visual content by converting still images into dynamic audio narratives. It shows how artificial intelligence may be used to develop inclusive digital solutions that provide people with disabilities more authority.
 
 ## Objectives
 
-- Develop a solution for [Blind Inclusivity].
+- Develop a solution for [Visually Impaired Inclusivity].
 - Implement features to [make a story that can be understand by impaired].
 - Test and validate [Image to Speech].
 
@@ -85,8 +85,6 @@ Step-by-step instructions for setting up the project locally.
    ```bash
    uvicorn main:app --reload
    ```
-
-**Note:** If your project has external depencies like XAMPP, MySQL, special SDK, or other environemnt setup, create another section for it.
 
 ## Usage Instructions
 
